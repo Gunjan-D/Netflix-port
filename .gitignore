@@ -1,0 +1,20 @@
+# Node / build
+node_modules/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+
+# Python caches
+__pycache__/
+
+# Media
+*.mp4
+*.mov
+*.avi
+*.mkv
