@@ -442,10 +442,9 @@
         /* Contact section grid display */
         .content-row[data-content="contact"]:not(.hidden) {
             display: grid !important;
-            grid-template-columns: 2fr 1fr !important;
-            gap: 2rem !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 1.5rem !important;
             padding: 2rem 0 !important;
-            align-items: start !important;
         }
 
         .hidden-section {
@@ -1285,145 +1284,75 @@
         <!-- Contact Section -->
         <section class="content-section hidden-section" id="contact">
             <div class="content-row hidden" data-content="contact">
-                <!-- Contact Cards Grid -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
-                    <!-- Email Card -->
-                    <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.location.href='mailto:gunjandeshpande490@gmail.com'">
-                        <div style="background: linear-gradient(135deg, #E50914 0%, #FF6B6B 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
-                            <div style="font-size: 3rem;">✉️</div>
-                        </div>
-                        <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
-                            <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-                            <div class="card-title" style="margin-bottom: 1rem;">Email</div>
-                            <div class="card-description" style="word-break: break-all;">gunjandeshpande490@gmail.com</div>
-                        </div>
+                <!-- Email Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.location.href='mailto:gunjandeshpande490@gmail.com'">
+                    <div style="background: linear-gradient(135deg, #E50914 0%, #FF6B6B 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem;">✉️</div>
                     </div>
-
-                    <!-- Phone Card -->
-                    <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('tel:+19349498870', '_blank')">
-                        <div style="background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
-                            <div style="font-size: 3rem; color: #E50914;">📞</div>
-                        </div>
-                        <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
-                            <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-                            <div class="card-title" style="margin-bottom: 1rem;">Phone</div>
-                            <div class="card-description">+1 (934) 949-8870</div>
-                        </div>
-                    </div>
-
-                    <!-- Location Card -->
-                    <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
-                        <div style="background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
-                            <div style="font-size: 3rem; color: #E50914;">📍</div>
-                        </div>
-                        <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
-                            <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-                            <div class="card-title" style="margin-bottom: 1rem;">Location</div>
-                            <div class="card-description">United States Of America</div>
-                        </div>
-                    </div>
-
-                    <!-- GitHub Card -->
-                    <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
-                        <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
-                            <div style="font-size: 3rem; color: #E50914;">🔗</div>
-                        </div>
-                        <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
-                            <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-                            <div class="card-title" style="margin-bottom: 1rem;">GitHub</div>
-                            <div class="card-description" style="cursor: pointer;">View Projects ↗</div>
-                        </div>
-                    </div>
-
-                    <!-- Resume Card -->
-                    <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
-                        <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
-                            <div style="font-size: 3rem;">📥</div>
-                        </div>
-                        <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
-                            <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-                            <div class="card-title" style="margin-bottom: 1rem;">Resume</div>
-                            <div class="card-description">Download Resume ↗</div>
-                        </div>
-                    </div>
-
-                    <!-- LinkedIn Card -->
-                    <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
-                        <div style="background: linear-gradient(135deg, #0072b1 0%, #00a0dc 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
-                            <div style="font-size: 3rem;">💼</div>
-                        </div>
-                        <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
-                            <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
-                            <div class="card-title" style="margin-bottom: 1rem;">LinkedIn</div>
-                            <div class="card-description">View Profile ↗</div>
-                        </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Email</div>
+                        <div class="card-description" style="word-break: break-all;">gunjandeshpande490@gmail.com</div>
                     </div>
                 </div>
 
-                <!-- Reviews & Ratings Section -->
-                <div style="display: flex; flex-direction: column; gap: 2rem;">
-                    <!-- Overall Rating Card -->
-                    <div style="background: linear-gradient(135deg, #1f2b33 0%, #2b2b2b 100%); padding: 2rem; border-radius: 8px; text-align: center;">
-                        <h3 style="color: white; font-size: 1.2rem; margin-bottom: 1.5rem;">Reviews & Ratings</h3>
-                        <div style="font-size: 3.5rem; font-weight: bold; color: #E50914; margin-bottom: 0.5rem;">4.8</div>
-                        <div style="color: #E50914; font-size: 1.2rem; margin-bottom: 0.8rem;">★★★★★</div>
-                        <div style="color: #999; font-size: 0.9rem;">Based on 24 reviews</div>
+                <!-- Phone Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('tel:+19349498870', '_blank')">
+                    <div style="background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem; color: #E50914;">📞</div>
                     </div>
-
-                    <!-- Rating Distribution -->
-                    <div style="background: linear-gradient(135deg, #1f2b33 0%, #2b2b2b 100%); padding: 1.5rem; border-radius: 8px;">
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <span style="color: #999; font-size: 0.9rem;">5 Stars</span>
-                                <span style="color: #E50914; font-weight: 600;">18</span>
-                            </div>
-                            <div style="background: #333; height: 4px; border-radius: 2px; overflow: hidden;">
-                                <div style="background: #E50914; height: 100%; width: 75%;"></div>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <span style="color: #999; font-size: 0.9rem;">4 Stars</span>
-                                <span style="color: #E50914; font-weight: 600;">4</span>
-                            </div>
-                            <div style="background: #333; height: 4px; border-radius: 2px; overflow: hidden;">
-                                <div style="background: #E50914; height: 100%; width: 17%;"></div>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <span style="color: #999; font-size: 0.9rem;">3 Stars</span>
-                                <span style="color: #E50914; font-weight: 600;">1</span>
-                            </div>
-                            <div style="background: #333; height: 4px; border-radius: 2px; overflow: hidden;">
-                                <div style="background: #E50914; height: 100%; width: 4%;"></div>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <span style="color: #999; font-size: 0.9rem;">2 Stars</span>
-                                <span style="color: #E50914; font-weight: 600;">1</span>
-                            </div>
-                            <div style="background: #333; height: 4px; border-radius: 2px; overflow: hidden;">
-                                <div style="background: #E50914; height: 100%; width: 4%;"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <span style="color: #999; font-size: 0.9rem;">1 Star</span>
-                                <span style="color: #E50914; font-weight: 600;">0</span>
-                            </div>
-                            <div style="background: #333; height: 4px; border-radius: 2px; overflow: hidden;">
-                                <div style="background: #E50914; height: 100%; width: 0%;"></div>
-                            </div>
-                        </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Phone</div>
+                        <div class="card-description">+1 (934) 949-8870</div>
                     </div>
+                </div>
 
-                    <!-- Rate This Portfolio -->
-                    <div style="background: linear-gradient(135deg, #1f2b33 0%, #2b2b2b 100%); padding: 1.5rem; border-radius: 8px; text-align: center;">
-                        <h4 style="color: white; font-size: 1rem; margin-bottom: 1rem;">Rate This Portfolio</h4>
-                        <div style="font-size: 2.5rem; letter-spacing: 0.5rem; cursor: pointer;" id="ratingStars">★★★★★</div>
-                        <div style="color: #999; font-size: 0.85rem; margin-top: 1rem;">Click stars to rate</div>
+                <!-- Location Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem; color: #E50914;">📍</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Location</div>
+                        <div class="card-description">United States Of America</div>
+                    </div>
+                </div>
+
+                <!-- GitHub Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
+                    <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem; color: #E50914;">🔗</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">GitHub</div>
+                        <div class="card-description" style="cursor: pointer;">View Projects ↗</div>
+                    </div>
+                </div>
+
+                <!-- Resume Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem;">📥</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Resume</div>
+                        <div class="card-description">Download Resume ↗</div>
+                    </div>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
+                    <div style="background: linear-gradient(135deg, #0072b1 0%, #00a0dc 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem;">💼</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">LinkedIn</div>
+                        <div class="card-description">View Profile ↗</div>
                     </div>
                 </div>
             </div>
@@ -1520,38 +1449,6 @@
                 }
             });
         });
-
-        // Rating Stars Functionality
-        const ratingStarsElement = document.getElementById('ratingStars');
-        if (ratingStarsElement) {
-            ratingStarsElement.addEventListener('click', function(e) {
-                const stars = this.textContent.trim();
-                const clickX = e.clientX - this.getBoundingClientRect().left;
-                const width = this.getBoundingClientRect().width;
-                const starCount = Math.ceil((clickX / width) * 5);
-                
-                let rating = '';
-                for (let i = 1; i <= 5; i++) {
-                    rating += i <= starCount ? '★' : '☆';
-                }
-                
-                this.textContent = rating;
-                
-                // Optional: Show feedback message
-                const feedbackDiv = document.createElement('div');
-                feedbackDiv.style.cssText = 'color: #4ade80; font-size: 0.8rem; margin-top: 0.5rem; opacity: 0; transition: opacity 0.3s;';
-                feedbackDiv.textContent = `Thank you! You rated ${starCount} stars.`;
-                
-                const parent = this.parentElement;
-                const existingFeedback = parent.querySelector('[style*="Thank you"]');
-                if (existingFeedback) existingFeedback.remove();
-                
-                parent.appendChild(feedbackDiv);
-                setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                setTimeout(() => feedbackDiv.remove(), 3000);
-            });
-        }
     </script>
 </body>
 </html>
