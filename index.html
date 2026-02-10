@@ -569,7 +569,7 @@
         }
 
         .content-card.skill::after {
-            content: "EXPERT";
+            content: attr(data-badge);
             position: absolute;
             top: 12px;
             right: 12px;
@@ -581,6 +581,17 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             box-shadow: 0 4px 10px rgba(229, 9, 20, 0.4);
+        }
+
+        .content-card.skill[data-proficiency="expert"]::after {
+            content: "EXPERT";
+        }
+
+        .content-card.skill[data-proficiency="intermediate"]::after {
+            content: "INTERMEDIATE";
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
         }
 
         .content-card.skill-large::after {
@@ -655,6 +666,7 @@
 
         .content-card.skill-large .card-overlay {
             padding-top: 16px;
+            padding-left: 80px;
         }
 
         .content-card.skill-small .card-overlay {
@@ -957,9 +969,9 @@
                 
                 <!-- Core Specialization -->
                 <div class="skill-category">
-                    <h3 class="skill-category-title">🔥 Core Specialization</h3>
+                    <h3 class="skill-category-title"> Core Specialization</h3>
                     <div class="skill-cards-grid">
-                        <div class="content-card skill skill-large">
+                        <div class="content-card skill skill-large" data-proficiency="expert">
                             <div class="skill-icon">🐍</div>
                             <div class="card-overlay">
                                 <div class="card-title">Python Development</div>
@@ -974,7 +986,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="content-card skill skill-large">
+                        <div class="content-card skill skill-large" data-proficiency="expert">
                             <div class="skill-icon">⚛️</div>
                             <div class="card-overlay">
                                 <div class="card-title">Full Stack Engineering</div>
@@ -996,35 +1008,35 @@
                 <div class="skill-category">
                     <h3 class="skill-category-title">⭐ Production Ready</h3>
                     <div class="skill-cards-grid">
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🐍</div>
                             <div class="card-overlay">
                                 <div class="card-title">Python</div>
                                 <div class="card-description">Primary language - Expert in backend development, data processing, and automation</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">⚛️</div>
                             <div class="card-overlay">
                                 <div class="card-title">React</div>
                                 <div class="card-description">Go-to framework for building modern, responsive UI components and SPAs</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🟢</div>
                             <div class="card-overlay">
                                 <div class="card-title">Node.js</div>
                                 <div class="card-description">Backend expertise for scalable server applications and APIs</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🌿</div>
                             <div class="card-overlay">
                                 <div class="card-title">Django</div>
                                 <div class="card-description">Production-ready web applications with robust ORM and admin panel</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">⚡</div>
                             <div class="card-overlay">
                                 <div class="card-title">Express.js</div>
@@ -1036,44 +1048,44 @@
 
                 <!-- Full Stack Essentials -->
                 <div class="skill-category">
-                    <h3 class="skill-category-title">💗 Full Stack Essentials</h3>
+                    <h3 class="skill-category-title">Full Stack Essentials</h3>
                     <div class="skill-cards-grid">
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🐘</div>
                             <div class="card-overlay">
                                 <div class="card-title">PostgreSQL</div>
                                 <div class="card-description">Advanced SQL queries, optimizations, and ACID transactions</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🍃</div>
                             <div class="card-overlay">
                                 <div class="card-title">MongoDB</div>
                                 <div class="card-description">NoSQL expertise for flexible, document-based data storage</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">🐬</div>
                             <div class="card-overlay">
                                 <div class="card-title">MySQL</div>
                                 <div class="card-description">Reliable data persistence and complex query optimization</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">🔴</div>
                             <div class="card-overlay">
                                 <div class="card-title">Redis</div>
                                 <div class="card-description">High-performance caching and real-time data management</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">🔷</div>
                             <div class="card-overlay">
                                 <div class="card-title">GraphQL</div>
                                 <div class="card-description">Efficient data fetching and modern API design patterns</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">🧪</div>
                             <div class="card-overlay">
                                 <div class="card-title">Flask</div>
@@ -1087,42 +1099,42 @@
                 <div class="skill-category">
                     <h3 class="skill-category-title">Software Engineering Practices</h3>
                     <div class="skill-cards-grid">
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🔀</div>
                             <div class="card-overlay">
                                 <div class="card-title">Git/GitHub</div>
                                 <div class="card-description">Version control, collaboration, and code review workflows</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🐳</div>
                             <div class="card-overlay">
                                 <div class="card-title">Docker</div>
                                 <div class="card-description">Containerized deployments ensuring consistent environments</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">☁️</div>
                             <div class="card-overlay">
                                 <div class="card-title">AWS</div>
                                 <div class="card-description">Cloud infrastructure including EC2, S3, Lambda, and RDS</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">🐧</div>
                             <div class="card-overlay">
                                 <div class="card-title">Linux</div>
                                 <div class="card-description">System administration and shell scripting proficiency</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">🗄️</div>
                             <div class="card-overlay">
                                 <div class="card-title">SQL</div>
                                 <div class="card-description">Database design, optimization, and complex query building</div>
                             </div>
                         </div>
-                        <div class="content-card skill">
+                        <div class="content-card skill" data-proficiency="intermediate">
                             <div class="skill-icon">📋</div>
                             <div class="card-overlay">
                                 <div class="card-title">JIRA</div>
@@ -1136,43 +1148,43 @@
                 <div class="skill-category">
                     <h3 class="skill-category-title">Also In My Toolkit</h3>
                     <div class="skill-cards-grid skill-small-grid">
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">C</div>
                             <div class="card-title-small">C</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">C++</div>
                             <div class="card-title-small">C++</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">☕</div>
                             <div class="card-title-small">Java</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">☸️</div>
                             <div class="card-title-small">Kubernetes</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">🔴</div>
                             <div class="card-title-small">Jenkins</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">🟪</div>
                             <div class="card-title-small">Terraform</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">☁️</div>
                             <div class="card-title-small">Azure</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">🧪</div>
                             <div class="card-title-small">Selenium</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">❄️</div>
                             <div class="card-title-small">Snowflake</div>
                         </div>
-                        <div class="content-card skill skill-small">
+                        <div class="content-card skill skill-small" data-proficiency="intermediate">
                             <div class="skill-icon-small">💻</div>
                             <div class="card-title-small">Bash</div>
                         </div>
