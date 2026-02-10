@@ -438,6 +438,14 @@
             display: block !important;
         }
 
+        /* Contact section grid display */
+        .content-row[data-content="contact"]:not(.hidden) {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 1.5rem !important;
+            padding: 2rem 0 !important;
+        }
+
         .hidden-section {
             padding: 0 !important;
             margin: 0 !important;
@@ -503,7 +511,7 @@
 
         .card-description {
             font-size: 0.85rem;
-            color: var(--netflix-gray);
+            color: white;
         }
 
         /* Experience Cards with Images */
@@ -936,25 +944,25 @@
         <!-- Projects Section -->
         <section class="content-section hidden-section" id="projects">
             <div class="content-row hidden" data-content="projects">
-                <div class="content-card project" style="cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/RecruitReady/', '_blank')">
+                <div class="content-card project" style="background: url('recuritready.png'); background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/RecruitReady/', '_blank')">
                     <div class="card-overlay">
                         <div class="card-title"> RecruitReady</div>
                         <div class="card-description">TF-IDF, OpenAI API, NLP • Real-time matching under 2s</div>
                     </div>
                 </div>
-                <div class="content-card project" style="cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/LinkedIn-Connection-Tracker/', '_blank')">
+                <div class="content-card project" style="background: url('connection.png'); background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/LinkedIn-Connection-Tracker/', '_blank')">
                     <div class="card-overlay">
                         <div class="card-title"> LinkedIn Connection Tracker</div>
                         <div class="card-description">Chrome Extensions MV3, Chrome Storage API • 91% accuracy</div>
                     </div>
                 </div>
-                <div class="content-card project" style="cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/Enterprise-AI-Copilot/', '_blank')">
+                <div class="content-card project" style="background: url('AI Copilot.png'); background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/Enterprise-AI-Copilot/', '_blank')">
                     <div class="card-overlay">
                         <div class="card-title"> Enterprise AI Copilot</div>
                         <div class="card-description">AI-powered enterprise assistant for productivity</div>
                     </div>
                 </div>
-                <div class="content-card project" style="cursor: pointer;" onclick="window.open('https://recommend-ai-nine.vercel.app/', '_blank')">
+                <div class="content-card project" style="background: url('movieexp.png'); background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer;" onclick="window.open('https://recommend-ai-nine.vercel.app/', '_blank')">
                     <div class="card-overlay">
                         <div class="card-title"> recommendAI</div>
                         <div class="card-description">Intelligent recommendation system powered by AI</div>
@@ -1148,43 +1156,43 @@
                 <div class="skill-category">
                     <h3 class="skill-category-title">Also In My Toolkit</h3>
                     <div class="skill-cards-grid skill-small-grid">
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">C</div>
                             <div class="card-title-small">C</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">C++</div>
                             <div class="card-title-small">C++</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">☕</div>
                             <div class="card-title-small">Java</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">☸️</div>
                             <div class="card-title-small">Kubernetes</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">🔴</div>
                             <div class="card-title-small">Jenkins</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">🟪</div>
                             <div class="card-title-small">Terraform</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">☁️</div>
                             <div class="card-title-small">Azure</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">🧪</div>
                             <div class="card-title-small">Selenium</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">❄️</div>
                             <div class="card-title-small">Snowflake</div>
                         </div>
-                        <div class="content-card skill skill-small" data-proficiency="intermediate">
+                        <div class="content-card skill skill-small">
                             <div class="skill-icon-small">💻</div>
                             <div class="card-title-small">Bash</div>
                         </div>
@@ -1203,10 +1211,10 @@
                         <div class="card-description">Stony Brook University, NY • Jan 2024 - Dec 2025</div>
                     </div>
                 </div>
-                <div class="content-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%), url('dy patil.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                <div class="content-card" style="background: url('dy patil.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
                     <div class="card-overlay">
                         <div class="card-title">B.Tech in Data Science</div>
-                        <div class="card-description">DY Patil University, Mumbai • Jun 2019 - Aug 2023</div>
+                        <div class="card-description" style="color: white;">DY Patil University, Mumbai • Jun 2019 - Aug 2023</div>
                     </div>
                 </div>
             </div>
@@ -1275,28 +1283,75 @@
         <!-- Contact Section -->
         <section class="content-section hidden-section" id="contact">
             <div class="content-row hidden" data-content="contact">
-                <div class="content-card" style="background: linear-gradient(135deg, #0072b1 0%, #00a0dc 100%); cursor: pointer;" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
-                    <div class="card-overlay">
-                        <div class="card-title">📧 LinkedIn</div>
-                        <div class="card-description">Connect professionally on LinkedIn</div>
+                <!-- Email Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.location.href='mailto:gunjandeshpande490@gmail.com'">
+                    <div style="background: linear-gradient(135deg, #E50914 0%, #FF6B6B 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem;">✉️</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Email</div>
+                        <div class="card-description" style="word-break: break-all;">gunjandeshpande490@gmail.com</div>
                     </div>
                 </div>
-                <div class="content-card" style="background: linear-gradient(135deg, #24292e 0%, #2f363d 100%); cursor: pointer;" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
-                    <div class="card-overlay">
-                        <div class="card-title">💻 GitHub</div>
-                        <div class="card-description">Check out my code repositories</div>
+
+                <!-- Phone Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('tel:+19349498870', '_blank')">
+                    <div style="background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem; color: #E50914;">📞</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Phone</div>
+                        <div class="card-description">+1 (934) 949-8870</div>
                     </div>
                 </div>
-                <div class="content-card" style="background: linear-gradient(135deg, #EA4335 0%, #E1306C 100%); cursor: pointer;" onclick="window.location.href='mailto:gunjandeshpande490@gmail.com'">
-                    <div class="card-overlay">
-                        <div class="card-title">✉️ Email</div>
-                        <div class="card-description">gunjandeshpande490@gmail.com</div>
+
+                <!-- Location Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, #333333 0%, #4a4a4a 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem; color: #E50914;">📍</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Location</div>
+                        <div class="card-description">United States Of America</div>
                     </div>
                 </div>
-                <div class="content-card" style="background: linear-gradient(135deg, #6B46C1 0%, #9333EA 100%); cursor: pointer;" onclick="window.open('tel:+19349498870', '_blank')">
-                    <div class="card-overlay">
-                        <div class="card-title">📱 Phone</div>
-                        <div class="card-description">+1 934-949-8870</div>
+
+                <!-- GitHub Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
+                    <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem; color: #E50914;">🔗</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">GitHub</div>
+                        <div class="card-description" style="cursor: pointer;">View Projects ↗</div>
+                    </div>
+                </div>
+
+                <!-- Resume Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem;">📥</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">Resume</div>
+                        <div class="card-description">Download Resume ↗</div>
+                    </div>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
+                    <div style="background: linear-gradient(135deg, #0072b1 0%, #00a0dc 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
+                        <div style="font-size: 3rem;">💼</div>
+                    </div>
+                    <div class="card-overlay" style="position: relative; padding: 1.5rem; background: none;">
+                        <div style="color: #4ade80; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;"></div>
+                        <div class="card-title" style="margin-bottom: 1rem;">LinkedIn</div>
+                        <div class="card-description">View Profile ↗</div>
                     </div>
                 </div>
             </div>
