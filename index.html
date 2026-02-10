@@ -457,7 +457,7 @@
 
         .content-card {
             min-width: 300px;
-            height: 170px;
+            height: 200px;
             background: #2a2a2a;
             background-image: url('dy patil.png');
             background-size: cover;
@@ -471,8 +471,9 @@
         }
 
         .content-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-4px) scale(1.02);
             z-index: 10;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
         }
 
         .card-image {
@@ -511,7 +512,52 @@
         }
 
         .content-card.skill {
-            background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .content-card.skill::after {
+            content: "EXPERT";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--netflix-red);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+        }
+
+        .content-card.skill .skill-icon {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            pointer-events: none;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+        }
+
+        .content-card.skill:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 18px 36px rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.15);
         }
 
         /* Responsive */
@@ -1013,6 +1059,37 @@
                 }
             });
         });
+
+        // Enhance skill cards: add icons and tidy layout
+        (function() {
+            const iconMap = {
+                'Frontend Development': '🎨',
+                'Backend & APIs': '⚙️',
+                'Databases': '🗄️',
+                'DevOps & Tools': '🔧',
+                'Machine Learning': '🤖',
+                'Python': '🐍',
+                'React': '⚛️',
+                'Node.js': '🟢'
+            };
+
+            document.querySelectorAll('.content-card.skill').forEach(card => {
+                if (card.querySelector('.skill-icon')) return;
+                const titleEl = card.querySelector('.card-title');
+                const title = titleEl ? titleEl.textContent.trim() : '';
+                const icon = iconMap[title] || '★';
+                const iconEl = document.createElement('div');
+                iconEl.className = 'skill-icon';
+                iconEl.textContent = icon;
+                card.appendChild(iconEl);
+
+                // move overlay content down so it doesn't overlap the icon
+                const overlay = card.querySelector('.card-overlay');
+                if (overlay) {
+                    overlay.style.paddingTop = '56px';
+                }
+            });
+        })();
     </script>
 </body>
 </html>
