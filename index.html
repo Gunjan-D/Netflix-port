@@ -511,15 +511,57 @@
             background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
         }
 
+        /* Skills Section Styles */
+        .skill-category {
+            margin-bottom: 3rem;
+        }
+
+        .skill-category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-small-grid {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
         .content-card.skill {
-            background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            background: linear-gradient(180deg, rgba(30,30,30,0.95), rgba(20,20,20,0.9));
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            padding: 1.2rem;
+            min-width: unset;
+            height: auto;
+            min-height: 180px;
+        }
+
+        .content-card.skill-large {
+            grid-column: span 1;
+            min-height: 320px;
+            padding: 1.5rem;
+        }
+
+        .content-card.skill-small {
+            min-height: 100px;
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .content-card.skill::after {
@@ -531,33 +573,114 @@
             color: white;
             padding: 6px 10px;
             border-radius: 999px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.6px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(229, 9, 20, 0.4);
         }
 
-        .content-card.skill .skill-icon {
+        .content-card.skill-large::after {
+            content: none;
+        }
+
+        .content-card.skill-small::after {
+            content: none;
+        }
+
+        .skill-icon {
             position: absolute;
             top: 14px;
             left: 14px;
-            width: 48px;
-            height: 48px;
+            width: 56px;
+            height: 56px;
             border-radius: 8px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .skill-icon-small {
+            font-size: 32px;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background: var(--netflix-red);
             color: white;
-            pointer-events: none;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 4px 10px rgba(229, 9, 20, 0.4);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card-title-small {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .content-card.skill .card-overlay {
+            position: relative;
+            background: none;
+            padding: 0;
+            padding-top: 70px;
+        }
+
+        .content-card.skill-large .card-overlay {
+            padding-top: 16px;
+        }
+
+        .content-card.skill-small .card-overlay {
+            padding: 0;
+        }
+
+        .content-card.skill .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-card.skill-large .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-card.skill .card-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.75);
         }
 
         .content-card.skill:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 18px 36px rgba(0,0,0,0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.6);
             border-color: rgba(255,255,255,0.15);
+        }
+
+        .content-card.skill-small:hover {
+            transform: translateY(-2px) scale(1.05);
         }
 
         /* Responsive */
@@ -826,37 +949,232 @@
 
         <!--Skills Section -->
         <section class="content-section hidden-section" id="skills">
-            <div class="content-row hidden" data-content="skills">
-                <div class="content-card skill">
-                    <div class="card-overlay">
-                        <div class="card-title">Frontend Development</div>
-                        <div class="card-description">React, TypeScript, HTML, CSS, UX</div>
+            <div class="content-row hidden" data-content="skills" style="display: block !important; padding: 0;">
+                
+                <!-- Core Specialization -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">🔥 Core Specialization</h3>
+                    <div class="skill-cards-grid">
+                        <div class="content-card skill skill-large">
+                            <div class="skill-icon">🐍</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Python Development</div>
+                                <div class="skill-badge">PRIMARY EXPERTISE</div>
+                                <div class="card-description">Expert in Python ecosystem - from Django web applications to data processing pipelines, automation scripts, and AI/ML implementations. Proficient in writing clean, efficient, and Pythonic code.</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Django</span>
+                                    <span class="skill-tag">Flask</span>
+                                    <span class="skill-tag">FastAPI</span>
+                                    <span class="skill-tag">Pandas</span>
+                                    <span class="skill-tag">NumPy</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card skill skill-large">
+                            <div class="skill-icon">⚛️</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Full Stack Engineering</div>
+                                <div class="skill-badge">CORE COMPETENCY</div>
+                                <div class="card-description">End-to-end application development from responsive React frontends to scalable Node.js/Express backends. Experienced in building RESTful APIs, real-time features, and modern web architectures.</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="content-card skill">
-                    <div class="card-overlay">
-                        <div class="card-title">Backend & APIs</div>
-                        <div class="card-description">Node.js, Python, REST APIs</div>
+
+                <!-- Production Ready -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">⭐ Production Ready</h3>
+                    <div class="skill-cards-grid">
+                        <div class="content-card skill">
+                            <div class="skill-icon">🐍</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Python</div>
+                                <div class="card-description">Primary language - Expert in backend development, data processing, and automation</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">⚛️</div>
+                            <div class="card-overlay">
+                                <div class="card-title">React</div>
+                                <div class="card-description">Go-to framework for building modern, responsive UI components and SPAs</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🟢</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Node.js</div>
+                                <div class="card-description">Backend expertise for scalable server applications and APIs</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🌿</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Django</div>
+                                <div class="card-description">Production-ready web applications with robust ORM and admin panel</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">⚡</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Express.js</div>
+                                <div class="card-description">Lightweight APIs and microservices with efficient routing</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="content-card skill">
-                    <div class="card-overlay">
-                        <div class="card-title">Databases</div>
-                        <div class="card-description">PostgreSQL, MySQL, MongoDB</div>
+
+                <!-- Full Stack Essentials -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">💗 Full Stack Essentials</h3>
+                    <div class="skill-cards-grid">
+                        <div class="content-card skill">
+                            <div class="skill-icon">🐘</div>
+                            <div class="card-overlay">
+                                <div class="card-title">PostgreSQL</div>
+                                <div class="card-description">Advanced SQL queries, optimizations, and ACID transactions</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🍃</div>
+                            <div class="card-overlay">
+                                <div class="card-title">MongoDB</div>
+                                <div class="card-description">NoSQL expertise for flexible, document-based data storage</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🐬</div>
+                            <div class="card-overlay">
+                                <div class="card-title">MySQL</div>
+                                <div class="card-description">Reliable data persistence and complex query optimization</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🔴</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Redis</div>
+                                <div class="card-description">High-performance caching and real-time data management</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🔷</div>
+                            <div class="card-overlay">
+                                <div class="card-title">GraphQL</div>
+                                <div class="card-description">Efficient data fetching and modern API design patterns</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🧪</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Flask</div>
+                                <div class="card-description">Lightweight microservices and RESTful API development</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="content-card skill">
-                    <div class="card-overlay">
-                        <div class="card-title">DevOps & Tools</div>
-                        <div class="card-description">Git, Jenkins, AWS, Agile</div>
+
+                <!-- Software Engineering Practices -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Software Engineering Practices</h3>
+                    <div class="skill-cards-grid">
+                        <div class="content-card skill">
+                            <div class="skill-icon">🔀</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Git/GitHub</div>
+                                <div class="card-description">Version control, collaboration, and code review workflows</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🐳</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Docker</div>
+                                <div class="card-description">Containerized deployments ensuring consistent environments</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">☁️</div>
+                            <div class="card-overlay">
+                                <div class="card-title">AWS</div>
+                                <div class="card-description">Cloud infrastructure including EC2, S3, Lambda, and RDS</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🐧</div>
+                            <div class="card-overlay">
+                                <div class="card-title">Linux</div>
+                                <div class="card-description">System administration and shell scripting proficiency</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">🗄️</div>
+                            <div class="card-overlay">
+                                <div class="card-title">SQL</div>
+                                <div class="card-description">Database design, optimization, and complex query building</div>
+                            </div>
+                        </div>
+                        <div class="content-card skill">
+                            <div class="skill-icon">📋</div>
+                            <div class="card-overlay">
+                                <div class="card-title">JIRA</div>
+                                <div class="card-description">Agile project management and sprint planning</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="content-card skill">
-                    <div class="card-overlay">
-                        <div class="card-title">Machine Learning</div>
-                        <div class="card-description">scikit-learn, TensorFlow, NLP, SHAP, LIME</div>
+
+                <!-- Also In My Toolkit -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Also In My Toolkit</h3>
+                    <div class="skill-cards-grid skill-small-grid">
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">C</div>
+                            <div class="card-title-small">C</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">C++</div>
+                            <div class="card-title-small">C++</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">☕</div>
+                            <div class="card-title-small">Java</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">☸️</div>
+                            <div class="card-title-small">Kubernetes</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">🔴</div>
+                            <div class="card-title-small">Jenkins</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">🟪</div>
+                            <div class="card-title-small">Terraform</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">☁️</div>
+                            <div class="card-title-small">Azure</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">🧪</div>
+                            <div class="card-title-small">Selenium</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">❄️</div>
+                            <div class="card-title-small">Snowflake</div>
+                        </div>
+                        <div class="content-card skill skill-small">
+                            <div class="skill-icon-small">💻</div>
+                            <div class="card-title-small">Bash</div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -1059,37 +1377,6 @@
                 }
             });
         });
-
-        // Enhance skill cards: add icons and tidy layout
-        (function() {
-            const iconMap = {
-                'Frontend Development': '🎨',
-                'Backend & APIs': '⚙️',
-                'Databases': '🗄️',
-                'DevOps & Tools': '🔧',
-                'Machine Learning': '🤖',
-                'Python': '🐍',
-                'React': '⚛️',
-                'Node.js': '🟢'
-            };
-
-            document.querySelectorAll('.content-card.skill').forEach(card => {
-                if (card.querySelector('.skill-icon')) return;
-                const titleEl = card.querySelector('.card-title');
-                const title = titleEl ? titleEl.textContent.trim() : '';
-                const icon = iconMap[title] || '★';
-                const iconEl = document.createElement('div');
-                iconEl.className = 'skill-icon';
-                iconEl.textContent = icon;
-                card.appendChild(iconEl);
-
-                // move overlay content down so it doesn't overlap the icon
-                const overlay = card.querySelector('.card-overlay');
-                if (overlay) {
-                    overlay.style.paddingTop = '56px';
-                }
-            });
-        })();
     </script>
 </body>
 </html>
