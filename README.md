@@ -1,5 +1,5 @@
 
-# Netflix-style Portfolio (Gunjan Deshpande)
+# Netflix-style Portfolio
 
 This repository contains a static, Netflix-style portfolio landing page (single-file `index.html`) for Gunjan Deshpande.
 
