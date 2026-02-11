@@ -28,4 +28,4 @@ git push -u origin main
 Notes:
 - `index.html` uses an inline stylesheet and script. If you want to split CSS/JS into separate files, move styles and scripts into `styles.css` and `script.js` and update `index.html` accordingly.
 - Large media files (e.g., `hiring.mp4`) are not included. Add them to the repo if you want a video hero.
-  //////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////
