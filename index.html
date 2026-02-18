@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gunjan Deshpande - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         :root {
@@ -20,7 +20,7 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: var(--netflix-black);
             color: white;
             overflow-x: hidden;
@@ -47,11 +47,19 @@
         }
 
         #splash h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 8rem;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            /* Compute font-size so the full name fits: (viewport width - padding) / characters */
+            font-size: clamp(1.6rem, calc((100vw - 80px) / 16), 8rem);
             color: var(--netflix-red);
-            letter-spacing: 8px;
+            /* Use responsive letter-spacing to avoid overflow on narrow viewports */
+            letter-spacing: clamp(2px, 0.5vw, 8px);
             animation: fadeInScale 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            word-break: normal;
+            overflow-wrap: normal;
+            display: inline-block;
+            text-align: center;
+            max-width: 96vw;
         }
 
         @keyframes fadeInScale {
@@ -165,7 +173,7 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         .traditional-btn:hover {
@@ -205,6 +213,20 @@
             background: var(--netflix-black);
         }
 
+        /* Prevent fixed nav from overlapping anchored sections */
+        html { scroll-padding-top: 110px; }
+        section, .content-section { scroll-margin-top: 110px; }
+
+        /* Make the education hero responsive and add breathing room */
+        #eduHero { margin-top: 8px; }
+        #eduHero > div { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        #eduHero img { max-width: 100%; height: auto; width: 420px; border-radius: 12px; }
+
+        @media (max-width: 900px) {
+            #eduHero > div { flex-direction: column; align-items: stretch; }
+            #eduHero img { width: 100%; height: auto; margin-bottom: 0.6rem; }
+        }
+
         .back-button {
             position: fixed;
             top: 1.5rem;
@@ -215,7 +237,7 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-size: 0.9rem;
             font-weight: 600;
             z-index: 1001;
@@ -232,7 +254,7 @@
         }
 
         .logo {
-            font-family: 'Bebas Neue', cursive;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-size: 2rem;
             color: var(--netflix-red);
             letter-spacing: 3px;
@@ -244,16 +266,37 @@
             gap: 2rem;
             list-style: none;
         }
-
         .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 0.95rem;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+        }
+
+        /* Make top nav links look like the Today's Top Picks category tabs */
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1rem;
+            background: rgba(255,255,255,0.06);
+            border-radius: 6px;
+            border: 2px solid transparent;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
-            color: var(--netflix-gray);
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.18);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            background: white;
+            color: black;
+            border-color: white;
         }
 
         .profile-icon {
@@ -286,15 +329,20 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            /* Slightly brighter and increased contrast for better visibility */
             filter: brightness(0.75) contrast(1.05);
         }
 
         .hero-content {
             max-width: 600px;
-            animation: fadeInUp 1s ease;
             position: relative;
             z-index: 1;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation only on initial page load */
+        .hero-content.initial-load {
+            animation: fadeInUp 1s ease;
         }
 
         @keyframes fadeInUp {
@@ -338,7 +386,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-weight: 600;
             transition: all 0.3s ease;
             display: flex;
@@ -421,6 +469,94 @@
             border-color: white;
         }
 
+        /* Main Preview Cards - Always visible below category tabs */
+        .main-preview-cards {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 0;
+            flex-wrap: nowrap; /* keep all preview cards on one row */
+            overflow-x: auto; /* allow horizontal scrolling on small screens */
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
+        }
+        /* Hide scrollbars but keep scrolling functional */
+        .main-preview-cards, .content-row {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .main-preview-cards::-webkit-scrollbar, .content-row::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+            height: 0;
+            width: 0;
+        }
+
+        .preview-card {
+            flex: 0 0 calc(16.66% - 1.6rem); /* six cards per row */
+            min-width: 220px; /* prevent cards from shrinking too small */
+            height: 350px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .preview-card:hover {
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 0 16px 40px rgba(229, 9, 20, 0.4);
+            border-color: rgba(229, 9, 20, 0.6);
+            z-index: 10;
+        }
+
+        .preview-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem 1.2rem 1.6rem; /* reduce vertical padding so overlay has room */
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .preview-card:hover .preview-card-overlay {
+            opacity: 1;
+        }
+
+        .preview-card-title {
+            font-size: clamp(1rem, 1.6vw, 1.4rem); /* smaller, responsive */
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            white-space: normal; /* allow wrapping */
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        @media (max-width: 900px) {
+            .main-preview-cards {
+                flex-direction: row; /* keep horizontal layout */
+                gap: 1rem;
+                overflow-x: auto;
+                padding: 0 1rem 1rem 1rem;
+            }
+            .preview-card {
+                height: 250px;
+                flex: 0 0 320px; /* fixed card width for small screens, allow scrolling */
+            }
+            .preview-card-title {
+                font-size: 1.5rem;
+            }
+        }
+
         .content-row {
             display: flex;
             gap: 1rem;
@@ -429,14 +565,239 @@
             padding-bottom: 1rem;
         }
 
+        /* Make the education content row vertical so edu-grid sits above certifications */
+        .content-row[data-content="education"] {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
         .content-row.hidden {
-            display: none;
+            display: none !important;
+        }
+
+        /* Experience Section with Video Hero */
+        .content-row[data-content="experience"] {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow: visible;
+            padding: 0;
+        }
+
+        .experience-hero {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+        }
+
+        .experience-hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.75) contrast(1.05);
+        }
+
+        .experience-cards-container {
+            display: flex;
+            gap: 2rem;
+            padding: 0 4rem;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow-x: auto; /* allow horizontal scrolling */
+            flex-wrap: nowrap; /* keep cards on a single row */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide visible scrollbar for experience row but keep scrolling */
+        .experience-cards-container {
+            -ms-overflow-style: none; /* IE/Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .experience-cards-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+            height: 0;
+            width: 0;
+        }
+
+        .experience-card {
+            background: linear-gradient(135deg, rgba(30,35,45,0.95), rgba(20,25,35,0.98));
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex: 0 0 360px; /* fixed card width to keep row layout */
+            min-width: 300px;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(229, 9, 20, 0.2);
+            border-color: rgba(229, 9, 20, 0.4);
+        }
+
+        .exp-category {
+            display: inline-block;
+            background: rgba(229, 9, 20, 0.2);
+            color: #e50914;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+
+        .exp-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+
+        .exp-company {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-date {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1rem;
+        }
+
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .exp-tag {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.9);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .exp-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .exp-btn {
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            flex: 1;
+        }
+
+        .exp-btn-primary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .exp-btn-primary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .exp-btn-secondary {
+            background: rgba(229, 9, 20, 0.1);
+            color: #e50914;
+            border: 1px solid rgba(229, 9, 20, 0.3);
+        }
+
+        .exp-btn-secondary:hover {
+            background: rgba(229, 9, 20, 0.2);
+            border-color: rgba(229, 9, 20, 0.5);
+        }
+
+        @media (max-width: 900px) {
+            .experience-cards-container {
+                padding: 0 2rem;
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            .experience-card {
+                padding: 1.5rem;
+                flex: 0 0 320px; /* slightly smaller on narrow screens */
+            }
+            .exp-title {
+                font-size: 1.2rem;
+            }
+            .experience-hero {
+                height: 40vh;
+            }
+            .exp-actions {
+                flex-direction: column;
+            }
+            .projects-grid {
+                padding: 0 2rem;
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            .edu-grid {
+                padding: 0 2rem;
+            }
+            .skill-category {
+                padding: 0 2rem;
+            }
         }
 
         /* Skills section grid display */
         .content-row[data-content="skills"]:not(.hidden) {
-            display: block !important;
+            display: flex !important;
+            flex-direction: column !important;
             padding: 0 !important;
+            gap: 0 !important;
+        }
+
+        /* Projects section with video hero */
+        .content-row[data-content="projects"]:not(.hidden) {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 !important;
+            gap: 0 !important;
+        }
+
+        /* Education section with video hero */
+        .content-row[data-content="education"]:not(.hidden) {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 !important;
+            gap: 0 !important;
         }
 
         /* Contact section grid display */
@@ -527,6 +888,11 @@
         /* Skills Section Styles */
         .skill-category {
             margin-bottom: 3rem;
+            padding: 0 4rem;
+        }
+
+        .skill-category:first-of-type {
+            margin-top: 3rem;
         }
 
         .skill-category-title {
@@ -540,10 +906,21 @@
         }
 
         .skill-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
             gap: 1.5rem;
             margin-bottom: 1rem;
+            overflow-x: auto; /* keep skills in one horizontal row */
+            flex-wrap: nowrap;
+            padding: 0 4rem;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none; /* hide scrollbar IE/Edge */
+            scrollbar-width: none; /* hide scrollbar Firefox */
+        }
+
+        .skill-cards-grid::-webkit-scrollbar {
+            display: none; /* hide scrollbar Chrome/Safari/Opera */
+            height: 0;
+            width: 0;
         }
 
         .skill-small-grid {
@@ -559,12 +936,16 @@
             min-width: unset;
             height: auto;
             min-height: 180px;
+            flex: 0 0 320px; /* fixed width so skills stay in one row */
+            min-width: 260px;
         }
 
         .content-card.skill-large {
             grid-column: span 1;
             min-height: 320px;
             padding: 1.5rem;
+            flex: 0 0 520px; /* keep the two large cards wide */
+            min-width: 480px;
         }
 
         .content-card.skill-small {
@@ -575,6 +956,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            flex: 0 0 240px; /* smaller fixed width for compact skill tiles */
+            min-width: 200px;
         }
 
         .content-card.skill::after {
@@ -603,11 +986,11 @@
             box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
         }
 
-        .content-card.skill-large::after {
+        .content-card.large::after {
             content: none;
         }
 
-        .content-card.skill-small::after {
+        .content-card.small::after {
             content: none;
         }
 
@@ -708,6 +1091,12 @@
             transform: translateY(-2px) scale(1.05);
         }
 
+        /* Certificate card styles */
+        a:has(.content-card) .content-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             #splash h1 {
@@ -785,6 +1174,26 @@
             box-shadow: 0 6px 18px rgba(0,0,0,0.6);
         }
 
+        /* Certificate badge (emoji inside colored circle) */
+        .cert-badge {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            color: white;
+            background: var(--netflix-red);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .cert-badge svg {
+            width: 42px;
+            height: 42px;
+            display: block;
+        }
+
         .rec-name {
             font-size: 1.1rem;
             font-weight: 700;
@@ -819,6 +1228,174 @@
         /* sbu-img removed; images are now full-card backgrounds */
 
         /* removed .rec-readmore (no longer used) */
+        /* Education styles */
+        .edu-grid {
+            display: flex;
+            gap: 1.2rem;
+            align-items: stretch;
+            flex-wrap: nowrap; /* keep certificates in one row */
+            overflow-x: auto;
+            padding: 0 4rem;
+            margin-top: 3rem;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none; /* IE/Edge hide scrollbar */
+            scrollbar-width: none; /* Firefox hide scrollbar */
+        }
+
+        .edu-grid::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Opera hide scrollbar */
+            height: 0;
+            width: 0;
+        }
+
+        .edu-grid .edu-card {
+            flex: 0 0 340px; /* fixed width so certificates stay one row */
+            min-width: 300px;
+        }
+
+        /* Also hide scrollbar on the education content-row wrapper */
+        .content-row[data-content="education"] {
+            -ms-overflow-style: none; /* IE/Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .content-row[data-content="education"]::-webkit-scrollbar {
+            display: none;
+            height: 0;
+            width: 0;
+        }
+
+        .projects-grid {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0 4rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+            flex-wrap: nowrap; /* keep projects in one row */
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none; /* IE/Edge hide scrollbar */
+            scrollbar-width: none; /* Firefox hide scrollbar */
+        }
+
+        .projects-grid::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Opera hide scrollbar */
+            height: 0;
+            width: 0;
+        }
+
+        .edu-card {
+            flex: 1 1 48%;
+            min-width: 320px;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            color: white;
+            min-height: 240px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .edu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(229, 9, 20, 0.3);
+        }
+
+        .edu-card .edu-top {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .edu-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .edu-card h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .edu-sub {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            margin-top: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .edu-meta { display:flex; gap:1.2rem; margin-top:1rem; align-items:center; }
+
+        .gpa-box {
+            background: rgba(0,0,0,0.28);
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            font-weight: 700;
+            min-width: 56px;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+        }
+
+        .edu-minor {
+            background: rgba(255,255,255,0.06);
+            padding: 0.6rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .edu-actions { margin-top: 1rem; display:flex; gap:0.8rem; }
+
+        .minor-row { display:flex; gap:1rem; align-items:center; margin-top:1.2rem; }
+        .minor-fill { background: rgba(0,0,0,0.18); padding: 0.8rem 1rem; border-radius: 8px; flex:1; color: rgba(255,255,255,0.95); font-weight:600; }
+        .gpa-label { font-size:0.72rem; color: rgba(255,255,255,0.78); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+
+        .edu-actions .btn {
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .edu-actions .btn:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .section-title.education {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-card.blue { background: linear-gradient(180deg,#2b5174,#1f4058); }
+        .edu-card.purple { background: linear-gradient(180deg,#5b2b63,#3b1743); }
+
+        @media (max-width: 900px) {
+            .edu-card { flex: 1 1 100%; }
+        }
+        /* Ensure edu-grid cards stay fixed-width and do not wrap -- placed after .edu-card to override earlier rule */
+        .content-row[data-content="education"] .edu-grid .edu-card {
+            flex: 0 0 340px !important;
+            min-width: 300px !important;
+        }
     </style>
 </head>
 <body>
@@ -873,11 +1450,9 @@
             <div class="logo">GD</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="https://www.linkedin.com/in/gunjan-deshpande/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com/Gunjan-D" target="_blank">GitHub</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#recommendations">Recommendations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="profile-icon">G</div>
@@ -887,7 +1462,6 @@
         <section class="hero" id="home">
             <video id="heroVideo" autoplay muted loop playsinline>
                 <source src="hiring.mp4" type="video/mp4">
-                <!-- If you don't have hiring.mp4 in the profile folder, the hero will show the dark gradient fallback. -->
             </video>
             <div class="hero-content">
                 <h1>Gunjan Deshpande</h1>
@@ -909,10 +1483,44 @@
         <!-- Experience Section -->
         <section class="content-section" id="experience">
             <h2 class="section-title">Today's Top Picks for recruiter</h2>
+
+            <!-- Main Preview Cards - Always Visible -->
+            <div class="main-preview-cards">
+                <div class="preview-card" data-trigger="experience" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('experience.png'); background-size: cover; background-position: center;">
+                    <div class="preview-card-overlay">
+                        <div class="preview-card-title">Experience</div>
+                    </div>
+                </div>
+                <div class="preview-card" data-trigger="skills" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('skills.png'); background-size: cover; background-position: center;">
+                    <div class="preview-card-overlay">
+                        <div class="preview-card-title">Skills</div>
+                    </div>
+                </div>
+                <div class="preview-card" data-trigger="education" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('education.png'); background-size: cover; background-position: center;">
+                    <div class="preview-card-overlay">
+                        <div class="preview-card-title">Education</div>
+                    </div>
+                </div>
+                <div class="preview-card" data-trigger="projects" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('project.png'); background-size: cover; background-position: center;">
+                    <div class="preview-card-overlay">
+                        <div class="preview-card-title">Project</div>
+                    </div>
+                </div>
+                <div class="preview-card" data-trigger="contact" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('contact me.png'); background-size: cover; background-position: center;">
+                    <div class="preview-card-overlay">
+                        <div class="preview-card-title">Contact Me</div>
+                    </div>
+                </div>
+                <div class="preview-card" data-trigger="recommendations" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('recommendation.png'); background-size: cover; background-position: center;">
+                    <div class="preview-card-overlay">
+                        <div class="preview-card-title">Recommendation</div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Category Tabs -->
-            <div class="category-tabs">
-                <div class="category-tab active" data-category="experience">Experience</div>
+            <!-- Category Tabs (hidden by default, shown when navigating) -->
+            <div class="category-tabs" style="display: none;">
+                <div class="category-tab" data-category="experience">Experience</div>
                 <div class="category-tab" data-category="skills">Skills</div>
                 <div class="category-tab" data-category="education">Education</div>
                 <div class="category-tab" data-category="projects">Projects</div>
@@ -920,23 +1528,93 @@
                 <div class="category-tab" data-category="contact">Contact Me</div>
             </div>
             
-            <div class="content-row" data-content="experience">
-                <div class="content-card experience" style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.35)), url('sbu.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
-                    <div class="card-overlay">
-                        <div class="card-title">Software Engineer - CS Department</div>
-                        <div class="card-description">Stony Brook University • Sep 2025 - Present</div>
+            <div class="content-row hidden" data-content="experience">
+                <!-- Experience Video Hero -->
+                <div class="experience-hero">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="hiring.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-content">
+                        <h1>Gunjan Deshpande</h1>
+                        <div class="hero-subtitle">Data Scientist & Software Engineer</div>
+                        <p class="hero-description">
+                            Software Development Engineer with experience building full-stack web products and backend services in Python and JavaScript, optimizing search and indexing for sub-200ms latency, and shipping AI-enabled features end-to-end.
+                        </p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-primary" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
+                                ▶ GitHub
+                            </button>
+                            <button class="btn btn-secondary" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
+                                ℹ LinkedIn
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="content-card experience" style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.35)), url('sbu.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
-                    <div class="card-overlay">
-                        <div class="card-title">Software Engineer - Physics Department</div>
-                        <div class="card-description">Stony Brook University • May 2024 - Aug 2024</div>
+
+                <!-- Experience Cards -->
+                <div class="experience-cards-container">
+                    <div class="experience-card">
+                        <div class="exp-category">UNIVERSITY</div>
+                        <div class="exp-title">Software Engineer - CS Department</div>
+                        <div class="exp-company">Stony Brook University</div>
+                        <div class="exp-date">Sep 2025 - Present</div>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Python</span>
+                            <span class="exp-tag">JavaScript</span>
+                            <span class="exp-tag">Full-Stack</span>
+                            <span class="exp-tag">Backend Systems</span>
+                        </div>
+                        <div class="exp-actions">
+                            <button class="exp-btn exp-btn-primary">More Info</button>
+                            <button class="exp-btn exp-btn-secondary" onclick="window.open('https://complexitygarden.com/', '_blank')">Visit Site</button>
+                        </div>
                     </div>
-                </div>
-                <div class="content-card experience" style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.35)), url('tata.jpg'); background-size: cover; background-position: center;">
-                    <div class="card-overlay">
-                        <div class="card-title">Software Engineer</div>
-                        <div class="card-description">TATA Research Center ACTREC • Jan 2023 - Jan 2024</div>
+                    <div class="experience-card">
+                        <div class="exp-category">UNIVERSITY</div>
+                        <div class="exp-title">Software Engineer - Physics Department</div>
+                        <div class="exp-company">Stony Brook University</div>
+                        <div class="exp-date">May 2024 - Aug 2024</div>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Python</span>
+                            <span class="exp-tag">Data Analysis</span>
+                            <span class="exp-tag">APIs</span>
+                            <span class="exp-tag">Scientific Computing</span>
+                        </div>
+                        <div class="exp-actions">
+                            <button class="exp-btn exp-btn-primary">More Info</button>
+                            <button class="exp-btn exp-btn-secondary" onclick="window.open('https://www.stonybrook.edu/commcms/physics/', '_blank')">Visit Site</button>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <div class="exp-category">RESEARCH</div>
+                        <div class="exp-title">Software Engineer</div>
+                        <div class="exp-company">TATA Research Center ACTREC</div>
+                        <div class="exp-date">Jan 2023 - Jan 2024</div>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Python</span>
+                            <span class="exp-tag">Machine Learning</span>
+                            <span class="exp-tag">Data Science</span>
+                            <span class="exp-tag">Research</span>
+                        </div>
+                        <div class="exp-actions">
+                            <button class="exp-btn exp-btn-primary">More Info</button>
+                            <button class="exp-btn exp-btn-secondary" onclick="window.open('https://www.actrec.gov.in/', '_blank')">Visit Site</button>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <div class="exp-category">FREELANCE</div>
+                        <div class="exp-title">Teaching Assistant</div>
+                        <div class="exp-company">Freelance</div>
+                        <div class="exp-date">Jan 2021 - Jan 2023 · 2 yrs 1 mo</div>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Teaching</span>
+                            <span class="exp-tag">Mentoring</span>
+                            <span class="exp-tag">Programming</span>
+                            <span class="exp-tag">Computer Science</span>
+                        </div>
+                        <div class="exp-actions">
+                            <button class="exp-btn exp-btn-primary">More Info</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -945,6 +1623,30 @@
         <!-- Projects Section -->
         <section class="content-section hidden-section" id="projects">
             <div class="content-row hidden" data-content="projects">
+                <!-- Projects Video Hero -->
+                <div class="experience-hero">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="hiring.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-content">
+                        <h1>Gunjan Deshpande</h1>
+                        <div class="hero-subtitle">Data Scientist & Software Engineer</div>
+                        <p class="hero-description">
+                            Software Development Engineer with experience building full-stack web products and backend services in Python and JavaScript, optimizing search and indexing for sub-200ms latency, and shipping AI-enabled features end-to-end.
+                        </p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-primary" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
+                                ▶ GitHub
+                            </button>
+                            <button class="btn btn-secondary" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
+                                ℹ LinkedIn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
                 <div class="content-card project" style="background: url('recuritready.png'); background-size: cover; background-position: center; background-repeat: no-repeat; cursor: pointer;" onclick="window.open('https://gunjan-d.github.io/RecruitReady/', '_blank')">
                     <div class="card-overlay">
                         <div class="card-title"> RecruitReady</div>
@@ -969,12 +1671,34 @@
                         <div class="card-description">Intelligent recommendation system powered by AI</div>
                     </div>
                 </div>
+                </div>
             </div>
         </section>
 
         <!--Skills Section -->
         <section class="content-section hidden-section" id="skills">
             <div class="content-row hidden" data-content="skills">
+                <!-- Skills Video Hero -->
+                <div class="experience-hero">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="hiring.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-content">
+                        <h1>Gunjan Deshpande</h1>
+                        <div class="hero-subtitle">Data Scientist & Software Engineer</div>
+                        <p class="hero-description">
+                            Software Development Engineer with experience building full-stack web products and backend services in Python and JavaScript, optimizing search and indexing for sub-200ms latency, and shipping AI-enabled features end-to-end.
+                        </p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-primary" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
+                                ▶ GitHub
+                            </button>
+                            <button class="btn btn-secondary" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
+                                ℹ LinkedIn
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Core Specialization -->
                 <div class="skill-category">
@@ -1015,7 +1739,7 @@
 
                 <!-- Production Ready -->
                 <div class="skill-category">
-                    <h3 class="skill-category-title">⭐ Production Ready</h3>
+                    <h3 class="skill-category-title"> Production Ready</h3>
                     <div class="skill-cards-grid">
                         <div class="content-card skill" data-proficiency="expert">
                             <div class="skill-icon">🐍</div>
@@ -1205,17 +1929,230 @@
 
         <!-- Education Section -->
         <section class="content-section hidden-section" id="education">
-            <div class="content-row hidden" data-content="education">
-                <div class="content-card" style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.35)), url('sbu.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
-                    <div class="card-overlay">
-                        <div class="card-title">MS in Data Science</div>
-                        <div class="card-description">Stony Brook University, NY • Jan 2024 - Dec 2025</div>
+            <!-- Academic Journey header with hero image (education page only) -->
+            <div id="eduHero" style="padding:2rem 4rem;">
+                <div style="display:flex; gap:2rem; align-items:center;">
+                    <!-- Left: hero image (place education-hero.png in the project root) -->
+                    <div style="flex:0 0 420px; display:flex; align-items:center; justify-content:center;">
+                        <img src="education-hero.png" alt="Academic Hero" style="width:420px; height:240px; object-fit:cover; border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,0.6); border:3px solid rgba(255,255,255,0.03);" onerror="this.style.display='none'">
+                    </div>
+
+                    <!-- Right: title + details -->
+                    <div style="flex:1; min-width:0;">
+                        <h1 style="font-size:3.6rem; margin:0 0 0.6rem 0; font-weight:800; color:white; letter-spacing:1px;">ACADEMIC JOURNEY</h1>
+                        <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap;">
+                            <div style="color:#9ca3af; padding:0.25rem 0.5rem; border:1px solid rgba(255,255,255,0.06); border-radius:4px; font-weight:700;">2025 EDU</div>
+                            <div style="color:#9ca3af;">Graduation: December 2025</div>
+                        </div>
+
+                        <p style="color:#ddd; max-width:900px; line-height:1.6; margin-top:0;">Explore my educational background and professional certifications. Completed a Master’s in Data Science at Stony Brook University (SUNY).</p>
+
+                        <div style="margin-top:1.2rem; display:flex; gap:0.6rem; align-items:center;">
+                            <button class="filter-btn" data-filter="all" style="background:#4b5563; color:white; border:none; padding:0.6rem 1rem; border-radius:8px; cursor:pointer; font-weight:700;">All Education</button>
+                            <span style="color:#6b7280; font-weight:700;">|</span>
+                            <button class="filter-btn" data-filter="certifications" style="background:#4b5563; color:white; border:none; padding:0.6rem 1rem; border-radius:8px; cursor:pointer; font-weight:700;">Certifications</button>
+                        </div>
                     </div>
                 </div>
-                <div class="content-card" style="background: url('dy patil.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-                    <div class="card-overlay">
-                        <div class="card-title">B.Tech in Data Science</div>
-                        <div class="card-description" style="color: white;">DY Patil University, Mumbai • Jun 2019 - Aug 2023</div>
+            </div>
+            <div class="content-row hidden" data-content="education">
+                <!-- Education Video Hero -->
+                <div class="experience-hero">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="hiring.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-content">
+                        <h1>Gunjan Deshpande</h1>
+                        <div class="hero-subtitle">Data Scientist & Software Engineer</div>
+                        <p class="hero-description">
+                            Software Development Engineer with experience building full-stack web products and backend services in Python and JavaScript, optimizing search and indexing for sub-200ms latency, and shipping AI-enabled features end-to-end.
+                        </p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-primary" onclick="window.open('https://github.com/Gunjan-D', '_blank')">
+                                ▶ GitHub
+                            </button>
+                            <button class="btn btn-secondary" onclick="window.open('https://www.linkedin.com/in/gunjan-deshpande/', '_blank')">
+                                ℹ LinkedIn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Grid -->
+                <div class="edu-grid">
+                    <div class="edu-card blue">
+                        <div>
+                            <div class="edu-top">
+                                <div class="edu-icon">🎓</div>
+                                <div>
+                                    <h3>Stony Brook University</h3>
+                                    <div class="edu-sub">MS in Data Science — New York</div>
+                                    <div style="color: #ccc; margin-top:6px; font-size:0.9rem;">Jan. 2024 – Dec. 2025</div>
+                                </div>
+                            </div>
+
+                            <!-- Course list moved to Show More -->
+
+                            <div class="education-details" style="display:none; margin-top:1rem; color:#ddd; font-size:0.95rem; line-height:1.6;">
+                                <strong>Key Courses</strong>
+                                <ul style="margin:0.5rem 0 0.5rem 1.2rem;">
+                                    <li>AMS 580 Statistical Learning</li>
+                                    <li>AMS 597 Statistical Computing</li>
+                                    <li>CSE 583 Comp Sci Fundamentals</li>
+                                    <li>ISE 503 Data Management</li>
+                                    <li>AMS 560 Big Data Algorithms</li>
+                                    <li>AMS 572 Data Analysis I</li>
+                                    <li>AMS 515 Case Studies in ML</li>
+                                    <li>AMS 598 Big Data Analysis</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.6rem;">
+                            <div class="edu-actions">
+                                <button class="btn" onclick="toggleEducationDetails(this)">Show More</button>
+                                <button class="btn" onclick="alert('Transcript feature coming soon!')">📄 View Transcript</button>
+                            </div>
+                            <div style="width:46px; height:46px; background: rgba(255,255,255,0.04); border-radius:8px; display:flex; align-items:center; justify-content:center;"> </div>
+                        </div>
+                    </div>
+
+                    <div class="edu-card purple">
+                        <div>
+                            <div class="edu-top">
+                                <div class="edu-icon">🎓</div>
+                                <div>
+                                    <h3>DY Patil University</h3>
+                                    <div class="edu-sub">B.Tech in Data Science — Navi Mumbai</div>
+                                    <div style="color: #ccc; margin-top:6px; font-size:0.9rem;">Jun. 2019 – Aug. 2023</div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                                <span style="background: rgba(255,255,255,0.04); padding:6px 10px; border-radius:6px;">Computer Science</span>
+                                <span style="background: rgba(255,255,255,0.04); padding:6px 10px; border-radius:6px;">Advanced Database Systems</span>
+                                <span style="background: rgba(255,255,255,0.04); padding:6px 10px; border-radius:6px;">Data Science Fundamentals</span>
+                            </div>
+
+                            <div class="education-details" style="display:none; margin-top:1rem; color:#ddd; font-size:0.92rem; line-height:1.5;">
+                                <strong>Coursework</strong>
+                                <ul style="margin:0.5rem 0 0.8rem 1.2rem;">
+                                    <li>Computer Science</li>
+                                    <li>Advanced Database Systems</li>
+                                    <li>Data Science Fundamentals</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; justify-content:flex-start; align-items:center; margin-top:0.6rem;">
+                            <div class="edu-actions">
+                                <button class="btn" onclick="toggleEducationDetails(this)">Show More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width:100%; margin-top:3rem; padding: 0 4rem;">
+                    <h3 style="color:white; font-size:1.6rem; margin:0 0 1.5rem 0; font-weight:700; letter-spacing:0.5px;">Professional Certifications</h3>
+                    <div class="content-row" style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+                        <a href="https://drive.google.com/file/d/120yYBQVsLvy50v-s0u0EMNXi0wN9yvra/view" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#fff; color:#111; margin-bottom:1rem;">
+                                    <!-- Oracle-style badge: red ring -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <circle cx="24" cy="24" r="18" fill="#DD0000" />
+                                        <circle cx="24" cy="24" r="10" fill="#fff" />
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">Generative AI Oracle Professional</div>
+                                <div style="color:#DD0000; margin-top:8px; font-size:0.9rem; font-weight:700;">ORACLE</div>
+                            </div>
+                        </a>
+                        <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9nvkLZzZEKAdrhjrX/7GYaMYxc6zEcbpjYL_9nvkLZzZEKAdrhjrX_uFGEEhw4eiGALXBwD_1747617740718_completion_certificate.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#fff; color:#043231; margin-bottom:1rem;">
+                                    <!-- Forage-style badge: blue/turquoise diamond with white accents -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <g fill="none" fill-rule="evenodd">
+                                            <path d="M24 6 L40 22 L24 42 L8 22 Z" fill="#00A6A0" />
+                                            <path d="M16 22c3-2 12-2 16 0" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M16 30c3-2 12-2 16 0" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">Software Engineering - Forage</div>
+                                <div style="color:#cce; margin-top:8px; font-size:0.9rem;">Forage</div>
+                            </div>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1oE7n2U4BSO1qisERgRORHGwzx5YvUvG3/view" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#fff; color:#111; margin-bottom:1rem;">
+                                    <!-- Oracle-style badge: red ring -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <circle cx="24" cy="24" r="18" fill="#DD0000" />
+                                        <circle cx="24" cy="24" r="10" fill="#fff" />
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">Oracle Cloud DevOps</div>
+                                <div style="color:#DD0000; margin-top:8px; font-size:0.9rem; font-weight:700;">ORACLE</div>
+                            </div>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1rvvjpYAP5u1cYgFQd0EWR675HPyE69_r/view" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#fff; color:#111; margin-bottom:1rem;">
+                                    <!-- Oracle-style badge: red ring -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <circle cx="24" cy="24" r="18" fill="#DD0000" />
+                                        <circle cx="24" cy="24" r="10" fill="#fff" />
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">Data Science Professional</div>
+                                <div style="color:#DD0000; margin-top:8px; font-size:0.9rem; font-weight:700;">ORACLE</div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/learning/certificates/68723eed95bbb1ac5807e2d0d6dc42896cce5525c20d13156eb415c81f40cc8c/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BXfeHWOQjQjuAz47UeyKVqQ%3D%3D" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#fff; color:#111; margin-bottom:1rem;">
+                                    <!-- Microsoft logo: four colored squares -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="#00A4EF" />
+                                        <rect x="27" y="3" width="18" height="18" rx="2" ry="2" fill="#7FBA00" />
+                                        <rect x="3" y="27" width="18" height="18" rx="2" ry="2" fill="#FFB900" />
+                                        <rect x="27" y="27" width="18" height="18" rx="2" ry="2" fill="#F25022" />
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">Microsoft Azure AI Essentials Certificate</div>
+                                <div style="color:#cce; margin-top:8px; font-size:0.9rem;">Microsoft</div>
+                            </div>
+                        </a>
+                        <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/SKZxezskWgmFjRvj9/Tcz8gTtprzAS4xSoK_SKZxezskWgmFjRvj9_uFGEEhw4eiGALXBwD_1748278133739_completion_certificate.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#00ffd8; color:#042425; margin-bottom:1rem;">
+                                    <!-- BCG X style badge: turquoise square with dark X -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <rect x="6" y="6" width="36" height="36" rx="4" fill="#06EBC0" />
+                                        <path d="M18 14 L24 24 L18 34 L30 34 L24 24 L30 14 Z" fill="#062626" />
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">BCG - Data Science</div>
+                                <div style="color:#cce; margin-top:8px; font-size:0.9rem;">BCG X</div>
+                            </div>
+                        </a>
+                        <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/j43dGscQHtJJ57N54/a77WE3de8qrxWferQ_j43dGscQHtJJ57N54_uFGEEhw4eiGALXBwD_1748208874621_completion_certificate.pdf" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="content-card" style="min-width:240px; height:220px; background:linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; padding:1.5rem; border-radius:16px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
+                                <div class="cert-badge" style="background:#fff; color:#111; margin-bottom:1rem;">
+                                    <!-- EA-style badge: blue circle with white EA letters -->
+                                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <circle cx="24" cy="24" r="20" fill="#2B6DF6" />
+                                        <text x="24" y="31" fill="#ffffff" font-family="Segoe UI, Roboto, Arial, sans-serif" font-weight="700" font-size="16" text-anchor="middle">EA</text>
+                                    </svg>
+                                </div>
+                                <div style="font-weight:700; text-align:center; font-size:1rem; color:white; line-height:1.3;">Software Engineering</div>
+                                <div style="color:#cce; margin-top:8px; font-size:0.9rem;">Electronic Arts (EA)</div>
+                            </div>
+                        </a>
+                        <!-- Removed other certificate cards per request -->
                     </div>
                 </div>
             </div>
@@ -1333,7 +2270,7 @@
                 </div>
 
                 <!-- Resume Card -->
-                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;">
+                <div class="content-card" style="background: #2a2a2a; cursor: pointer; height: auto; display: flex; flex-direction: column; overflow: hidden;" onclick="window.open('Gunjan_Deshpande.pdf', '_blank')">
                     <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px;">
                         <div style="font-size: 3rem;">📥</div>
                     </div>
@@ -1362,6 +2299,16 @@
     <script>
         // Splash Screen
         window.addEventListener('load', () => {
+            // Add initial-load class to hero content for first-time animation only
+            const heroContent = document.querySelector('.hero .hero-content');
+            if (heroContent) {
+                heroContent.classList.add('initial-load');
+                // Remove after animation completes so it doesn't re-animate
+                setTimeout(() => {
+                    heroContent.classList.remove('initial-load');
+                }, 1200);
+            }
+            
             setTimeout(() => {
                 document.getElementById('splash').classList.add('hidden');
                 setTimeout(() => {
@@ -1419,12 +2366,50 @@
             });
         });
 
+        // Show the Academic Journey header only when viewing the Education section
+        function setEduHeroVisible(visible) {
+            const el = document.getElementById('eduHero');
+            if (!el) return;
+            el.style.display = visible ? 'block' : 'none';
+        }
+
+        // Initial visibility based on URL hash
+        setEduHeroVisible(location.hash === '#education');
+
+        // When nav links change the hash, update visibility
+        window.addEventListener('hashchange', () => {
+            setEduHeroVisible(location.hash === '#education');
+        });
+
+        // Also update visibility when in-page anchor links are clicked
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function () {
+                const href = this.getAttribute('href');
+                // small timeout to allow scrollIntoView to run
+                setTimeout(() => setEduHeroVisible(href === '#education'), 50);
+            });
+        });
+
         // Card hover animations
         document.querySelectorAll('.content-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             });
         });
+
+        // Education details toggle (used by Show More buttons)
+        function toggleEducationDetails(btn){
+            const card = btn.closest('.edu-card');
+            if(!card) return;
+            const details = card.querySelector('.education-details');
+            if(details){
+                const isHidden = details.style.display === 'none' || getComputedStyle(details).display === 'none';
+                details.style.display = isHidden ? 'block' : 'none';
+                btn.textContent = isHidden ? 'Show Less' : 'Show More';
+            } else {
+                alert('More details coming soon!');
+            }
+        }
 
         // Category Tabs Functionality
         document.querySelectorAll('.category-tab').forEach(tab => {
@@ -1447,8 +2432,76 @@
                 if (selectedContent) {
                     selectedContent.classList.remove('hidden');
                 }
+
+                // Hide the section title and preview cards when content is shown
+                const sectionTitle = document.querySelector('#experience .section-title');
+                const previewCards = document.querySelector('.main-preview-cards');
+                if (sectionTitle) sectionTitle.style.display = 'none';
+                if (previewCards) previewCards.style.display = 'none';
+                
+                // Hide the home hero section when viewing experience content
+                const homeHero = document.querySelector('.hero');
+                if (homeHero) homeHero.style.display = 'none';
             });
         });
+
+        // Preview Cards - trigger category tabs on click
+        document.querySelectorAll('.preview-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.getAttribute('data-trigger');
+                const categoryTab = document.querySelector(`.category-tab[data-category="${category}"]`);
+                if (categoryTab) {
+                    categoryTab.click();
+                }
+            });
+        });
+
+        // Function to show preview cards (for back navigation)
+        function showPreviewCards() {
+            const sectionTitle = document.querySelector('#experience .section-title');
+            const previewCards = document.querySelector('.main-preview-cards');
+            if (sectionTitle) sectionTitle.style.display = 'block';
+            if (previewCards) previewCards.style.display = 'flex';
+            
+            // Hide all content
+            document.querySelectorAll('[data-content]').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active from tabs
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            
+            // Show the home hero section again with stable positioning
+            const homeHero = document.querySelector('.hero');
+            if (homeHero) {
+                homeHero.style.display = 'flex';
+                homeHero.style.height = '100vh';
+                homeHero.style.position = 'relative';
+            }
+        }
+
+        // When clicking Home nav link, restore preview cards
+        document.querySelector('a[href="#home"]')?.addEventListener('click', showPreviewCards);
+
+        // Keep top nav links visually in-sync with current section (adds 'active' class)
+        function updateNavActive() {
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const hash = location.hash || '#home';
+            // Only mark internal links (those with href starting with #) as active
+            const activeLink = document.querySelector('.nav-links a[href="' + hash + '"]');
+            if (activeLink) activeLink.classList.add('active');
+        }
+
+        // Update active nav on load, hashchange, and after clicks
+        window.addEventListener('hashchange', updateNavActive);
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function () {
+                // allow smooth scroll to start then mark active
+                setTimeout(updateNavActive, 60);
+            });
+        });
+        // initial activation
+        updateNavActive();
     </script>
 </body>
 </html>

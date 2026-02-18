@@ -13,8 +13,11 @@ Thumbs.db
 # Python caches
 __pycache__/
 
-# Media
-*.mp4
-*.mov
-*.avi
-*.mkv
+# Virtual environment
+.venv/
+
+# Large media files (commented out to allow all files to be pushed)
+# *.mp4
+# *.mov
+# *.avi
+# *.mkv
