@@ -332,6 +332,18 @@
             filter: brightness(0.75) contrast(1.05);
         }
 
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.75) contrast(1.05);
+            display: none;
+        }
+
         .hero-content {
             max-width: 600px;
             position: relative;
@@ -1463,6 +1475,9 @@
             <video id="heroVideo" autoplay muted loop playsinline>
                 <source src="hiring.mp4" type="video/mp4">
             </video>
+            <img id="heroGif" src="Work.gif" alt="Background">
+            <img id="heroStalkerGif" src="stalking.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.75) contrast(1.05); display: none;">
+            <img id="heroAdventureGif" src="advanture.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.75) contrast(1.05); display: none;">
             <div class="hero-content">
                 <h1>Gunjan Deshpande</h1>
                 <div class="hero-subtitle">Data Scientist & Software Engineer</div>
@@ -1531,9 +1546,12 @@
             <div class="content-row hidden" data-content="experience">
                 <!-- Experience Video Hero -->
                 <div class="experience-hero">
-                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <video class="profile-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
                         <source src="hiring.mp4" type="video/mp4">
                     </video>
+                    <img class="profile-gif" src="Work.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="stalker-gif" src="stalking.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="adventure-gif" src="advanture.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
                     <div class="hero-content">
                         <h1>Gunjan Deshpande</h1>
                         <div class="hero-subtitle">Data Scientist & Software Engineer</div>
@@ -1625,9 +1643,12 @@
             <div class="content-row hidden" data-content="projects">
                 <!-- Projects Video Hero -->
                 <div class="experience-hero">
-                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <video class="profile-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
                         <source src="hiring.mp4" type="video/mp4">
                     </video>
+                    <img class="profile-gif" src="Work.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="stalker-gif" src="stalking.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="adventure-gif" src="advanture.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
                     <div class="hero-content">
                         <h1>Gunjan Deshpande</h1>
                         <div class="hero-subtitle">Data Scientist & Software Engineer</div>
@@ -1680,9 +1701,12 @@
             <div class="content-row hidden" data-content="skills">
                 <!-- Skills Video Hero -->
                 <div class="experience-hero">
-                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <video class="profile-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
                         <source src="hiring.mp4" type="video/mp4">
                     </video>
+                    <img class="profile-gif" src="Work.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="stalker-gif" src="stalking.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="adventure-gif" src="advanture.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
                     <div class="hero-content">
                         <h1>Gunjan Deshpande</h1>
                         <div class="hero-subtitle">Data Scientist & Software Engineer</div>
@@ -1958,9 +1982,12 @@
             <div class="content-row hidden" data-content="education">
                 <!-- Education Video Hero -->
                 <div class="experience-hero">
-                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <video class="profile-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
                         <source src="hiring.mp4" type="video/mp4">
                     </video>
+                    <img class="profile-gif" src="Work.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="stalker-gif" src="stalking.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <img class="adventure-gif" src="advanture.gif" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;">
                     <div class="hero-content">
                         <h1>Gunjan Deshpande</h1>
                         <div class="hero-subtitle">Data Scientist & Software Engineer</div>
@@ -2320,6 +2347,55 @@
         // Profile Selection
         document.querySelectorAll('.profile').forEach(profile => {
             profile.addEventListener('click', () => {
+                const selectedProfile = profile.getAttribute('data-profile');
+                const heroVideo = document.getElementById('heroVideo');
+                const heroGif = document.getElementById('heroGif');
+                const heroStalkerGif = document.getElementById('heroStalkerGif');
+                const heroAdventureGif = document.getElementById('heroAdventureGif');
+                const allVideos = document.querySelectorAll('.profile-video');
+                const allGifs = document.querySelectorAll('.profile-gif');
+                const allStalkerGifs = document.querySelectorAll('.stalker-gif');
+                const allAdventureGifs = document.querySelectorAll('.adventure-gif');
+                
+                // Toggle between video and GIF based on profile for ALL sections
+                if (selectedProfile === 'developer') {
+                    heroVideo.style.display = 'none';
+                    heroGif.style.display = 'block';
+                    heroStalkerGif.style.display = 'none';
+                    heroAdventureGif.style.display = 'none';
+                    allVideos.forEach(video => video.style.display = 'none');
+                    allGifs.forEach(gif => gif.style.display = 'block');
+                    allStalkerGifs.forEach(gif => gif.style.display = 'none');
+                    allAdventureGifs.forEach(gif => gif.style.display = 'none');
+                } else if (selectedProfile === 'stalker') {
+                    heroVideo.style.display = 'none';
+                    heroGif.style.display = 'none';
+                    heroStalkerGif.style.display = 'block';
+                    heroAdventureGif.style.display = 'none';
+                    allVideos.forEach(video => video.style.display = 'none');
+                    allGifs.forEach(gif => gif.style.display = 'none');
+                    allStalkerGifs.forEach(gif => gif.style.display = 'block');
+                    allAdventureGifs.forEach(gif => gif.style.display = 'none');
+                } else if (selectedProfile === 'adventurer') {
+                    heroVideo.style.display = 'none';
+                    heroGif.style.display = 'none';
+                    heroStalkerGif.style.display = 'none';
+                    heroAdventureGif.style.display = 'block';
+                    allVideos.forEach(video => video.style.display = 'none');
+                    allGifs.forEach(gif => gif.style.display = 'none');
+                    allStalkerGifs.forEach(gif => gif.style.display = 'none');
+                    allAdventureGifs.forEach(gif => gif.style.display = 'block');
+                } else {
+                    heroVideo.style.display = 'block';
+                    heroGif.style.display = 'none';
+                    heroStalkerGif.style.display = 'none';
+                    heroAdventureGif.style.display = 'none';
+                    allVideos.forEach(video => video.style.display = 'block');
+                    allGifs.forEach(gif => gif.style.display = 'none');
+                    allStalkerGifs.forEach(gif => gif.style.display = 'none');
+                    allAdventureGifs.forEach(gif => gif.style.display = 'none');
+                }
+                
                 document.getElementById('browse').classList.remove('active');
                 setTimeout(() => {
                     document.getElementById('portfolio').classList.add('active');
