@@ -30,4 +30,4 @@ Notes:
 - Large media files (e.g., `hiring.mp4`) are not included. Add them to the repo if you want a video hero.
   /
   ////////
-//////////////////////////////////
+/////////////////////////////////
